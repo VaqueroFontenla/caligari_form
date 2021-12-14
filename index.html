@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario Proyecto Caligari</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <main class="main">
+      <h1 class="title">
+          Hola   &#128075 <br>
+          Datos de campo de <span class="underlined">Proyecto Caligari</span>
+      </h1>
+      <h2 class="subtitle">Rellena este formulario y ayúdanos a recoger información sobre bares espectaculares</h2>
+      <form class="form">
+        <label class="label" for="name">Nombre: <input class="input" type="text" id="name" name="name"></label>
+        <label class="label" for="name">Ciudad: <input class="input" type="text" id="city" name="city"></label>
+        <fieldset class='fieldset'>
+            <legend>Etiquetas Caligari: </legend>
+            <div class="tags__wrapper">
+                <input type="checkbox" id="metal"/>
+                <button class='tag'><label class="label__tag" for="metal">Barra de metal</label></button>
+            </div>
+          </fieldset>
+      </form>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+:root {
+  --base-font-size: 1rem;
+  --font-color: #000;
+  --font-color-highlight: #cdf3e1;
+  --margin: 2rem;
+  --padding: 2rem;
+  --gap: 1rem;
+  --border-radius: 0.25rem;
+  --theme-body-bg: #fff;
+  --theme-color-primary: #000;
+  --theme-color-secondary: #555;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto";
+  color: var(--font-color);
+  font-size: var(--base-font-size);
+  width: 100%;
+  height: 100%;
+  background-color: var(--theme-body-bg);
+}
+
+.main {
+  min-height: 100%;
+  padding: var(--margin);
+}
+
+.title {
+  font-size: 2rem;
+  margin: var(--margin) 0;
+}
+
+.underlined {
+  box-shadow: var(--font-color-highlight) 0px -2rem 0px inset;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  margin-bottom: var(--margin);
+}
+
+.form {
+  display: grid;
+  row-gap: var(--gap);
+}
+
+.form__label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--gap);
+}
+
+.input {
+  height: 2rem;
+  width: 100%;
+  padding: calc(var(--padding) / 4);
+  border-radius: var(--border-radius);
+}
+
+.fieldset {
+  border: 0;
+}
+
+.tags__wrapper {
+  display: grid;
+
+  padding: calc(var(--padding) / 2);
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.tag {
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+
+  border-radius: calc(var(--border-radius) * 4);
+  border: 0.125rem solid rgb(0, 0, 0);
+  background-color: var(--theme-body-bg);
+  padding: 0.3rem 1.25rem;
+  height: 2rem;
+}
+
+input[type="checkbox"]:checked + .tag {
+  background-color: var(--font-color-highlight);
+}
+
+.label__tag {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
