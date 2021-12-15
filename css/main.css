@@ -9,6 +9,9 @@
   --theme-body-bg: #fff;
   --theme-color-primary: #000;
   --theme-color-secondary: #555;
+  --base-button-bg: #000;
+  --base-button-color: #fff;
+  --base-button-size: 100px;
 }
 
 * {
@@ -72,7 +75,9 @@ body {
 }
 
 .tags__wrapper {
-  display: grid;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
 
   padding: calc(var(--padding) / 2) 0;
 }
@@ -82,6 +87,8 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"] + .tag {
+  display: block;
+
   color: inherit;
   font-size: inherit;
   font-family: inherit;
@@ -95,4 +102,21 @@ input[type="checkbox"] + .tag {
 
 input[type="checkbox"]:checked + .tag {
   background-color: var(--font-color-highlight);
+}
+
+.submit {
+  align-self: center;
+  justify-self: end;
+
+  color: var(--base-button-color);
+  font-size: 1.25rem;
+  font-family: inherit;
+
+  background-color: var(--base-button-bg);
+  border-radius: calc(var(--border-radius) * 4);
+  border-color: var(--base-button-bg);
+  padding: 0.75rem;
+  outline: none;
+
+  cursor: pointer;
 }
