@@ -13,41 +13,23 @@
   </head>
   <body>
     <main class="main">
-      <h1 class="title">
-          Hola   &#128075 <br>
-          Datos de campo de <span class="underlined">Proyecto Caligari</span>
-      </h1>
-      <h2 class="subtitle">Rellena este formulario y ayúdanos a recoger información sobre bares espectaculares</h2>
-      <form  class="form" name='form' >
-        <label class="label" for="name">Nombre: <input class="input" type="text" id="name" name="name"></label>
-        <label class="label" for="city">Ciudad: <input class="input" type="text" id="city" name="city"></label>
-        <fieldset class='fieldset'>
-            <legend>Etiquetas Caligari: </legend>
-            <div class="tags__wrapper">
-              <div>
-                <input id="metal" name="metal" type="checkbox"/>
-                <label class="tag" for="metal">Barra de metal</label>
-              </div>
-              <div>
-                <input id="trophy" name="trophy" type="checkbox"/>
-                <label class="tag" for="trophy">Trofeo random</label>
-              </div>
-              <div>
-                <input id="skid-bar" name="skid-bar" type="checkbox"/>
-                <label class="tag" for="skid-bar">Barra derrapante</label>
-              </div>
-              <div>
-                <input id="tube-glass" name="tube-glass" type="checkbox"/>
-                <label class="tag" for="tube-glass">Vaso de tubo</label>
-              </div>
-              <div>
-                <input id="keys" nam="keys" type="checkbox"/>
-                <label class="tag" for="keys">Puedes dejar la llaves</label>
-              </div>
-            </div>
-          </fieldset>
-          <input type="submit" class="submit" type="submit" value='Enviar formulario'/>
-      </form>
+      <div class="wrapper">
+        <h1 class="title">
+            Hola   &#128075 <br>
+            Datos de campo de <span class="underlined">Proyecto Caligari</span>
+        </h1>
+        <h2 class="subtitle">Rellena este formulario y ayúdanos a recoger información sobre bares espectaculares</h2>
+        <form  class="form" name='form' >
+          <label class="label" for="name">Nombre: <input class="input" type="text" id="name" name="name"></label>
+          <label class="label" for="city">Ciudad: <input class="input" type="text" id="city" name="city"></label>
+          <fieldset class='fieldset'>
+              <legend>Etiquetas Caligari: </legend>
+              <ul class="tags__wrapper">
+              </ul>
+            </fieldset>
+            <input type="submit" class="submit" type="submit" value='Enviar'/>
+        </form>
+      </div>
     </main>
     <script type='text/javascript' src='js/main.js'></script>
   </body>
