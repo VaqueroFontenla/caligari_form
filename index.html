@@ -23,14 +23,20 @@
           <label class="label" for="name">Nombre: <input class="input" type="text" id="name" name="name"></label>
           <label class="label" for="city">Ciudad: <input class="input" type="text" id="city" name="city"></label>
           <fieldset class='fieldset'>
+            <legend>Califica:</legend>
+            <div class='feedback'>
+              <span class="rating"></span>
+            </div>
+          </fieldset>
+          <fieldset class='fieldset'>
               <legend>Etiquetas Caligari: </legend>
-              <ul class="tags__wrapper">
-              </ul>
-            </fieldset>
-            <input type="submit" class="submit" type="submit" value='Enviar'/>
+                <ul class="tags__wrapper">
+                </ul>
+          </fieldset>
+          <input type="submit" class="submit" type="submit" value='Enviar'/>
         </form>
       </div>
     </main>
-    <script type='text/javascript' src='js/main.js'></script>
+    <script type='module' src='js/main.js'></script>
   </body>
 </html>

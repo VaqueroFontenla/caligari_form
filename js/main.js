@@ -1,23 +1,35 @@
-const API_URL = "https://caligari-api.herokuapp.com/api/v1";
+const BASE_URL = "https://caligari-api.herokuapp.com/api/v1/";
 const form = document.form;
 const featuresWrapper = document.querySelector(".tags__wrapper");
+const startsWrapper = document.querySelector(".rating");
 
-const getFeatures = () => {
-  fetch(`${API_URL}/features`)
-    .then((response) => response.json())
-    .then((features) => {
-      const tpl = features
-        .map(
-          (feature) => `
+const createStarRating = () => {
+  const startsRating = [...Array(5).keys()];
+  const stars = startsRating
+    .map(
+      (start) => `
+    <input type="radio" id=${`start-${start}`} name="rating" value=${start} />
+    <label for=${`start-${start}`}></label>
+  `
+    )
+    .join("");
+  startsWrapper.innerHTML = stars;
+};
+
+const getFeatures = async () => {
+  const response = await fetch(`${BASE_URL}features`);
+  const features = await response.json();
+  const tpl = features
+    .map(
+      (feature) => `
         <li>
           <input id=${feature.id} name=${feature.id} type="checkbox"/>
           <label class="tag" for=${feature.id}>${feature.name}</label>
         </li>
         `
-        )
-        .join("");
-      featuresWrapper.innerHTML = tpl;
-    });
+    )
+    .join("");
+  featuresWrapper.innerHTML = tpl;
 };
 
 form.addEventListener("submit", (e) => {
@@ -30,4 +42,5 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
+createStarRating();
 getFeatures();
