@@ -9,6 +9,7 @@
   --theme-body-bg: #fff;
   --theme-color-primary: #000;
   --theme-color-secondary: #555;
+  --error-color: #ff0000;
   --base-button-bg: #000;
   --base-button-color: #fff;
   --base-button-size: 100px;
@@ -32,6 +33,10 @@ body {
   height: 100%;
   background-color: var(--theme-body-bg);
   scroll-behavior: smooth;
+}
+
+.hidden {
+  display: none;
 }
 
 .main {
@@ -64,20 +69,23 @@ body {
 
 .form {
   display: grid;
-  row-gap: var(--gap);
+  row-gap: calc(var(--gap) * 2);
 }
 
-.form__label {
+.field {
   display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: var(--gap);
+  row-gap: calc(var(--gap) / 2);
+}
+
+small {
+  color: var(--error-color);
 }
 
 .required::after {
   content: "*";
   font-size: 1rem;
   line-height: 1rem;
-  color: red;
+  color: var(--error-color);
   font-weight: bold;
 }
 
@@ -89,6 +97,13 @@ body {
   border-radius: var(--border-radius);
 }
 
+.error {
+  border-color: var(--error-color);
+}
+.alert-name {
+  color: red;
+  font-size: 2rem;
+}
 .textarea {
   padding: calc(var(--padding) / 4);
   border: 1px solid var(--theme-color-primary);

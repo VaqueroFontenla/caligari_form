@@ -20,22 +20,31 @@
         </h1>
         <h2 class="subtitle">Rellena este formulario y ayúdanos a recoger información sobre bares espectaculares</h2>
         <form  class="form" name='form' >
-          <label class="label required" for="name">Nombre: </label>
-          <input class="input" type="text" id="name" name="name">
-          <label class="label required" for="city">Ciudad: </label>
-          <input class="input" type="text" id="city" name="city">
-          <label class="label" for="description">Añade una descripción: </label>
-          <textarea class="textarea" id="description" name="description" rows="6"></textarea>
+          <div class='field'>
+            <label class="label required" for="name">Nombre: </label>
+            <input class="input" type="text" id="name" name="name">
+            <small id='alert-name'></small>
+          </div>
+          <div class='field'>
+            <label class="label required" for="city">Ciudad: </label>
+            <input class="input" type="text" id="city" name="city">
+            <small id='alert-city'></small>
+          </div>
+          <div class='field'>
+            <label class="label" for="description">Añade una descripción: </label>
+            <textarea class="textarea" id="description" name="description" rows="6"></textarea>
+          </div>
           <fieldset class='fieldset'>
             <legend class='required'>Califica:</legend>
             <div class='feedback'>
-              <span class="rating"></span>
+              <div class="rating"></div>
             </div>
+            <small id='alert-rating'></small>
           </fieldset>
           <fieldset class='fieldset'>
               <legend class='required'>Etiquetas Caligari: </legend>
-                <ul class="tags__wrapper">
-                </ul>
+              <ul class="tags__wrapper"></ul>
+              <small id='alert-features'></small>
           </fieldset>
           <input type="submit" class="submit" type="submit" value='Enviar'/>
         </form>

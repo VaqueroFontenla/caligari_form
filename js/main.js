@@ -8,7 +8,7 @@ const createStarRating = () => {
   const stars = startsRating
     .map(
       (start) => `
-    <input type="radio" id=${`start-${start}`} name="rating" value=${start} />
+    <input type="radio" id=${`start-${start}`} name="rating" value=${start}/>
     <label for=${`start-${start}`}></label>
   `
     )
@@ -32,15 +32,40 @@ const getFeatures = async () => {
   featuresWrapper.innerHTML = tpl;
 };
 
+const resetValues = () => {};
+const checkInputField = (field) => {
+  const formField = document.getElementById(field);
+  const alert = document.getElementById(`alert-${field}`);
+  if (!formField.value) {
+    formField.classList.add("error");
+    alert.innerHTML = "Campo requerido";
+  }
+  return;
+};
+const checkInputGroupField = (field, value) => {
+  const alert = document.getElementById(`alert-${field}`);
+  if (!value.length) {
+    alert.innerHTML = "Campo requerido";
+  }
+  return;
+};
 form.addEventListener("submit", (e) => {
-  const name = form.name.value;
-  const city = form.city.value;
-  const description = form.description.value;
-  const rating = form.rating.value;
+  e.preventDefault();
+  const { name, city, rating, description } = form;
   const features = [
     ...document.querySelectorAll('input[type="checkbox"]:checked'),
   ].map((feature) => feature.id);
-  console.log({ name, city, features, description, rating });
+  checkInputField(name.name);
+  checkInputField(city.name);
+  checkInputGroupField("rating", rating.value);
+  checkInputGroupField("features", features);
+  console.log({
+    name: name.value,
+    city: city.value,
+    features,
+    description: description.value,
+    rating: rating.value,
+  });
   e.preventDefault();
 });
 
