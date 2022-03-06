@@ -73,10 +73,25 @@ body {
   column-gap: var(--gap);
 }
 
+.required::after {
+  content: "*";
+  font-size: 1rem;
+  line-height: 1rem;
+  color: red;
+  font-weight: bold;
+}
+
 .input {
   height: 2rem;
   width: 100%;
   padding: calc(var(--padding) / 4);
+  border: 1px solid var(--theme-color-primary);
+  border-radius: var(--border-radius);
+}
+
+.textarea {
+  padding: calc(var(--padding) / 4);
+  border: 1px solid var(--theme-color-primary);
   border-radius: var(--border-radius);
 }
 
@@ -128,6 +143,7 @@ body {
   overscroll-behavior: contain;
   max-height: 320px;
 }
+
 .tags__wrapper::-webkit-scrollbar-track {
   margin: calc(var(--padding) / 2);
   border-radius: 10px;
@@ -161,7 +177,7 @@ input[type="checkbox"] + .tag {
   font-family: inherit;
 
   border-radius: calc(var(--border-radius) * 4);
-  border: 0.125rem solid rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
   background-color: var(--theme-body-bg);
   padding: 0.3rem 1.25rem;
 }

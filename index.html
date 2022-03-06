@@ -20,16 +20,20 @@
         </h1>
         <h2 class="subtitle">Rellena este formulario y ayúdanos a recoger información sobre bares espectaculares</h2>
         <form  class="form" name='form' >
-          <label class="label" for="name">Nombre: <input class="input" type="text" id="name" name="name"></label>
-          <label class="label" for="city">Ciudad: <input class="input" type="text" id="city" name="city"></label>
+          <label class="label required" for="name">Nombre: </label>
+          <input class="input" type="text" id="name" name="name">
+          <label class="label required" for="city">Ciudad: </label>
+          <input class="input" type="text" id="city" name="city">
+          <label class="label" for="description">Añade una descripción: </label>
+          <textarea class="textarea" id="description" name="description" rows="6"></textarea>
           <fieldset class='fieldset'>
-            <legend>Califica:</legend>
+            <legend class='required'>Califica:</legend>
             <div class='feedback'>
               <span class="rating"></span>
             </div>
           </fieldset>
           <fieldset class='fieldset'>
-              <legend>Etiquetas Caligari: </legend>
+              <legend class='required'>Etiquetas Caligari: </legend>
                 <ul class="tags__wrapper">
                 </ul>
           </fieldset>

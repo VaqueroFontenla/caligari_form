@@ -35,10 +35,12 @@ const getFeatures = async () => {
 form.addEventListener("submit", (e) => {
   const name = form.name.value;
   const city = form.city.value;
+  const description = form.description.value;
+  const rating = form.rating.value;
   const features = [
     ...document.querySelectorAll('input[type="checkbox"]:checked'),
   ].map((feature) => feature.id);
-  console.log({ name, city, features });
+  console.log({ name, city, features, description, rating });
   e.preventDefault();
 });
 
