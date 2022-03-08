@@ -39,15 +39,28 @@ const checkInputField = (field) => {
   if (!formField.value) {
     formField.classList.add("error");
     alert.innerHTML = "Campo requerido";
+    return false;
   }
-  return;
+  return true;
 };
 const checkInputGroupField = (field, value) => {
   const alert = document.getElementById(`alert-${field}`);
   if (!value.length) {
     alert.innerHTML = "Campo requerido";
+    return false;
   }
-  return;
+  return true;
+};
+
+const validateForm = (name, city, rating, features) => {
+  if (
+    checkInputField(name.name) &&
+    checkInputField(city.name) &&
+    checkInputGroupField("rating", rating.value) &&
+    checkInputGroupField("features", features)
+  ) {
+    return true;
+  }
 };
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -55,17 +68,15 @@ form.addEventListener("submit", (e) => {
   const features = [
     ...document.querySelectorAll('input[type="checkbox"]:checked'),
   ].map((feature) => feature.id);
-  checkInputField(name.name);
-  checkInputField(city.name);
-  checkInputGroupField("rating", rating.value);
-  checkInputGroupField("features", features);
-  console.log({
-    name: name.value,
-    city: city.value,
-    features,
-    description: description.value,
-    rating: rating.value,
-  });
+  if (validateForm(name, city, rating, features)) {
+    console.log({
+      name: name.value,
+      city: city.value,
+      features,
+      description: description.value,
+      rating: rating.value,
+    });
+  }
   e.preventDefault();
 });
 
