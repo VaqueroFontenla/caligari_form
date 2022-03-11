@@ -121,10 +121,6 @@ small {
   visibility: hidden;
 }
 
-small {
-  visibility: visible;
-}
-
 .textarea {
   padding: calc(var(--padding) / 4);
   border: 1px solid var(--theme-color-primary);
