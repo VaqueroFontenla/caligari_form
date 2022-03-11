@@ -1,7 +1,7 @@
 :root {
   --base-font-size: 1rem;
   --font-color: #000;
-  --font-color-highlight: #cdf3e1;
+  --color-highlight: #cdf3e1;
   --margin: 2rem;
   --padding: 2rem;
   --gap: 1rem;
@@ -10,6 +10,7 @@
   --theme-color-primary: #000;
   --theme-color-secondary: #555;
   --error-color: #ff0000;
+  --success-color: #2ecc71;
   --base-button-bg: #000;
   --base-button-color: #fff;
   --base-button-size: 100px;
@@ -60,7 +61,7 @@ body {
 }
 
 .underlined {
-  box-shadow: var(--font-color-highlight) 0px -2rem 0px inset;
+  box-shadow: var(--color-highlight) 0px -2rem 0px inset;
 }
 
 .subtitle {
@@ -72,13 +73,38 @@ body {
   row-gap: calc(var(--gap) * 2);
 }
 
-.field {
+.form-control {
   display: grid;
   row-gap: calc(var(--gap) / 2);
+  position: relative;
 }
 
-small {
-  color: var(--error-color);
+.form-control input {
+  height: 3rem;
+  width: 100%;
+  padding: calc(var(--padding) / 4);
+  border: 1px solid var(--theme-color-primary);
+  border-radius: var(--border-radius);
+}
+
+.form-control input:focus {
+  outline: 0;
+  border-color: var(--color-highlight);
+}
+
+.form-control.success input {
+  border-color: var(--success-color);
+}
+
+.form-control.error input {
+  border-color: var(--error-color);
+}
+
+i {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  visibility: hidden;
 }
 
 .required::after {
@@ -89,21 +115,15 @@ small {
   font-weight: bold;
 }
 
-.input {
-  height: 2rem;
-  width: 100%;
-  padding: calc(var(--padding) / 4);
-  border: 1px solid var(--theme-color-primary);
-  border-radius: var(--border-radius);
+small {
+  color: red;
+  visibility: hidden;
 }
 
-.error {
-  border-color: var(--error-color);
+small {
+  visibility: visible;
 }
-.alert-name {
-  color: red;
-  font-size: 2rem;
-}
+
 .textarea {
   padding: calc(var(--padding) / 4);
   border: 1px solid var(--theme-color-primary);
@@ -112,11 +132,34 @@ small {
 
 .fieldset {
   border: 0;
+  position: relative;
 }
 
 .feedback {
   display: flex;
   justify-content: center;
+
+  padding: var(--padding);
+}
+
+.feedback.success {
+  border: 1px solid var(--success-color);
+  border-radius: var(--border-radius);
+}
+
+.feedback.error {
+  border: 1px solid var(--error-color);
+  border-radius: var(--border-radius);
+}
+
+.feedback.success i.fa-check-circle {
+  visibility: visible;
+  color: var(--success-color);
+}
+
+.feedback.error i.fa-exclamation-circle {
+  color: var(--error-color);
+  visibility: visible;
 }
 
 .rating {
@@ -159,6 +202,14 @@ small {
   max-height: 320px;
 }
 
+.tags__wrapper.error {
+  border: 1px solid var(--error-color);
+}
+
+.tags__wrapper.success {
+  border: 1px solid var(--success-color);
+}
+
 .tags__wrapper::-webkit-scrollbar-track {
   margin: calc(var(--padding) / 2);
   border-radius: 10px;
@@ -198,10 +249,24 @@ input[type="checkbox"] + .tag {
 }
 
 input[type="checkbox"]:checked + .tag {
-  background-color: var(--font-color-highlight);
+  background-color: var(--color-highlight);
 }
 
-.submit {
+.form-control.success i.fa-check-circle,
+.feedback.success i.fa-check-circle,
+.tags__wrapper.success i.fa-check-circle {
+  visibility: visible;
+  color: var(--success-color);
+}
+
+.form-control.error i.fa-exclamation-circle,
+.feedback.success i.fa-check-circle,
+.tags__.success i.fa-check-circle {
+  color: var(--error-color);
+  visibility: visible;
+}
+
+.form input[type="submit"] {
   align-self: center;
   justify-self: end;
 

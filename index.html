@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <link>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +9,10 @@
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
       rel="stylesheet"
     />
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+  />
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
@@ -19,37 +23,47 @@
             Datos de campo de <span class="underlined">Proyecto Caligari</span>
         </h1>
         <h2 class="subtitle">Rellena este formulario y ayúdanos a recoger información sobre bares espectaculares</h2>
-        <form  class="form" name='form' >
-          <div class='field'>
-            <label class="label required" for="name">Nombre: </label>
-            <input class="input" type="text" id="name" name="name">
-            <small id='alert-name'></small>
+        <form id='form' class="form" name='form' action=''>
+          <div class='form-control'>
+            <label class="required" for="name">Nombre: </label>
+            <input type="text" id="name" name="name">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small></small>
           </div>
-          <div class='field'>
-            <label class="label required" for="city">Ciudad: </label>
-            <input class="input" type="text" id="city" name="city">
-            <small id='alert-city'></small>
+          <div class='form-control'>
+            <label class="required" for="city">Ciudad: </label>
+            <input type="text" id="city" name="city">
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small></small>
           </div>
-          <div class='field'>
-            <label class="label" for="description">Añade una descripción: </label>
+          <div class='form-control'>
+            <label for="description">Añade una descripción: </label>
             <textarea class="textarea" id="description" name="description" rows="6"></textarea>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
           </div>
           <fieldset class='fieldset'>
             <legend class='required'>Califica:</legend>
             <div class='feedback'>
               <div class="rating"></div>
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
             </div>
-            <small id='alert-rating'></small>
+            <small></small>
           </fieldset>
-          <fieldset class='fieldset'>
+          <fielddset class='fieldset'>
               <legend class='required'>Etiquetas Caligari: </legend>
               <ul class="tags__wrapper"></ul>
-              <small id='alert-features'></small>
-          </fieldset>
+              <small></small>
+          </fielddset>
           <input type="submit" class="submit" type="submit" value='Enviar'/>
         </form>
       </div>
     </main>
-    <script type='module' src='js/main.js'></script>
+    <script type="module" src="js/create-rating.js"></script>
+    <script type="module" src="js/get-features.js"></script>      
+    <script type="module" src="js/form.js"></script>  
   </body>
 </html>
