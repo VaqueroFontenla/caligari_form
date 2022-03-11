@@ -1,3 +1,4 @@
+const URL = "http://localhost:3000/api/v1/inns";
 const form = document.form;
 const inn = form.name;
 const city = form.city;
@@ -9,6 +10,39 @@ const alert = document.getElementById("alert-confirm");
 const alertClose = document.getElementById("alert-close");
 
 const toggleConfirmAlert = () => alert.classList.toggle("alert-confirm");
+
+const resetInput = (input) => {
+  if (input.value) {
+    const small = input.parentElement.querySelector("small");
+    if (small) {
+      small.innerText = "";
+      input.parentElement.className = "form-control";
+    }
+  }
+};
+
+const resetRating = () => {
+  if (rating.value) {
+    const small = startsWrapper.nextElementSibling;
+    if (small) {
+      startsWrapper.className = "feedback";
+      small.innerText = "";
+    }
+  }
+};
+
+const resetFeatures = () => {
+  const features = [
+    ...document.querySelectorAll('input[type="checkbox"]:checked'),
+  ];
+  if (features.length) {
+    const small = featuresWrapper.nextElementSibling;
+    if (small) {
+      featuresWrapper.className = "tags__wrapper";
+      small.innerText = "";
+    }
+  }
+};
 
 const resetForm = () => {
   const successElements = document.querySelectorAll(".success");
@@ -82,26 +116,40 @@ const validateInputs = (features) => {
       );
 };
 
-alertClose.addEventListener("click", (e) => {
-  e.preventDefault();
-  toggleConfirmAlert();
-});
+const submitForm = async (features) => {
+  const data = {
+    name: inn.value,
+    city: city.value,
+    features,
+    description: description.value,
+    rating: +rating.value,
+  };
+  console.log(data);
+  try {
+    const response = await fetch(URL, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
+inn.addEventListener("change", () => resetInput(inn));
+city.addEventListener("change", () => resetInput(city));
+startsWrapper.addEventListener("click", () => resetRating());
+featuresWrapper.addEventListener("click", () => resetFeatures());
+alertClose.addEventListener("click", () => toggleConfirmAlert());
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const features = [
     ...document.querySelectorAll('input[type="checkbox"]:checked'),
-  ].map((feature) => feature.value.id);
+  ].map((feature) => feature.id);
   validateInputs(features);
   const errors = document.querySelectorAll(".error");
   if (![...errors].length) {
-    console.log({
-      name: inn.value,
-      city: city.value,
-      features,
-      description: description.value,
-      rating: +rating.value,
-    });
+    submitForm(features);
     toggleConfirmAlert();
     resetForm();
   }

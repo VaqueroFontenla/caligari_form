@@ -1,8 +1,8 @@
-const BASE_URL = "https://caligari-api.herokuapp.com/api/v1/";
+const URL = "https://caligari-api.herokuapp.com/api/v1/features";
 const featuresWrapper = document.querySelector(".tags__wrapper");
 
 export const getFeatures = async () => {
-  const response = await fetch(`${BASE_URL}features`);
+  const response = await fetch(URL);
   const features = await response.json();
   const tpl = features
     .map(
