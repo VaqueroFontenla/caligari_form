@@ -3,11 +3,22 @@ const inn = form.name;
 const city = form.city;
 const description = form.description;
 const rating = form.rating;
-const features = [
-  ...document.querySelectorAll('input[type="checkbox"]:checked'),
-].map((feature) => feature.id);
 const startsWrapper = document.querySelector(".feedback");
 const featuresWrapper = document.querySelector(".tags__wrapper");
+const alert = document.getElementById("alert-confirm");
+const alertClose = document.getElementById("alert-close");
+
+const toggleConfirmAlert = () => alert.classList.toggle("alert-confirm");
+
+const resetForm = () => {
+  const successElements = document.querySelectorAll(".success");
+  const alerts = document.querySelectorAll("small");
+  [...successElements].forEach((element) =>
+    element.classList.remove("success")
+  );
+  [...alerts].forEach((alert) => (alert.innerText = ""));
+  form.reset();
+};
 
 const setErrorInput = (input, message) => {
   const formControl = input.parentElement;
@@ -18,7 +29,11 @@ const setErrorInput = (input, message) => {
 
 const setSuccessInput = (input) => {
   const formControl = input.parentElement;
+  const small = formControl.querySelector("small");
   formControl.className = "form-control success";
+  if (small) {
+    small.innerText = "";
+  }
 };
 
 const setErrorElement = (element, className, message) => {
@@ -28,10 +43,14 @@ const setErrorElement = (element, className, message) => {
 };
 
 const setSuccessElement = (element, className) => {
-  return (element.className = className);
+  element.className = className;
+  const small = element.nextElementSibling;
+  if (small) {
+    small.innerText = "";
+  }
 };
 
-const validateInputs = () => {
+const validateInputs = (features) => {
   const nameValue = inn.value.trim();
   const cityValue = city.value.trim();
   const ratingValue = rating.value;
@@ -63,15 +82,27 @@ const validateInputs = () => {
       );
 };
 
+alertClose.addEventListener("click", (e) => {
+  e.preventDefault();
+  toggleConfirmAlert();
+});
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  validateInputs();
-
-  console.log({
-    name: inn.value,
-    city: city.value,
-    features,
-    description: description.value,
-    rating: +rating.value,
-  });
+  const features = [
+    ...document.querySelectorAll('input[type="checkbox"]:checked'),
+  ].map((feature) => feature.value.id);
+  validateInputs(features);
+  const errors = document.querySelectorAll(".error");
+  if (![...errors].length) {
+    console.log({
+      name: inn.value,
+      city: city.value,
+      features,
+      description: description.value,
+      rating: +rating.value,
+    });
+    toggleConfirmAlert();
+    resetForm();
+  }
 });
