@@ -9,12 +9,12 @@
   --theme-body-bg: #e5e5e5;
   --form-bg: #fff;
   --theme-color-primary: #000;
-  --theme-color-secondary: #555;
   --error-color: #ff0000;
   --success-color: #2ecc71;
   --base-button-bg: #000;
   --base-button-color: #fff;
   --base-button-size: 100px;
+  --error-color-bg: #bd155033;
 }
 
 * {
@@ -275,14 +275,21 @@ input[type="checkbox"]:checked + .tag {
   cursor: pointer;
 }
 
-.alert-confirm {
+.alert {
   display: grid;
   grid-template-columns: 1fr auto;
 
-  background-color: var(--color-highlight);
   border-radius: var(--border-radius);
   padding: var(--padding);
   position: relative;
+}
+
+.alert.confirm {
+  background-color: var(--color-highlight);
+}
+
+.alert.error {
+  background-color: var(--error-color-bg);
 }
 
 i.fa-solid.fa-xmark {

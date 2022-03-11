@@ -1,4 +1,4 @@
-const URL = "http://localhost:3000/api/v1/inns";
+const URL = "https://caligari-api.herokuapp.com/api/v1/inns";
 const form = document.form;
 const inn = form.name;
 const city = form.city;
@@ -6,11 +6,22 @@ const description = form.description;
 const rating = form.rating;
 const startsWrapper = document.querySelector(".feedback");
 const featuresWrapper = document.querySelector(".tags__wrapper");
-const alert = document.getElementById("alert-confirm");
-const alertClose = document.getElementById("alert-close");
+const alertConfirm = document.getElementById("alert-confirm");
+const alertError = document.getElementById("alert-error");
+const alertConfirmClose = document.getElementById("alert-confirm-close");
+const alertErrorClose = document.getElementById("alert-error-close");
 
-const toggleConfirmAlert = () => alert.classList.toggle("alert-confirm");
+const toggleConfirmAlert = () => {
+  alertConfirm.classList.toggle("alert");
+  alertConfirm.classList.toggle("confirm");
+};
 
+const toggleErrorAlert = () => {
+  alertError.classList.toggle("alert");
+  alertError.classList.toggle("error");
+};
+
+const toggleAlert = () => {};
 const resetInput = (input) => {
   if (input.value) {
     const small = input.parentElement.querySelector("small");
@@ -124,15 +135,22 @@ const submitForm = async (features) => {
     description: description.value,
     rating: +rating.value,
   };
-  console.log(data);
   try {
     const response = await fetch(URL, {
       method: "POST",
+      headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
     });
-    return await response.json();
+    const inn = await response.json();
+    console.log(inn);
+    if (inn) {
+      toggleConfirmError();
+      resetForm();
+    } else {
+      toggleConfirmAlert();
+    }
   } catch (error) {
-    console.log(error);
+    toggleErrorAlert();
   }
 };
 
@@ -140,17 +158,16 @@ inn.addEventListener("change", () => resetInput(inn));
 city.addEventListener("change", () => resetInput(city));
 startsWrapper.addEventListener("click", () => resetRating());
 featuresWrapper.addEventListener("click", () => resetFeatures());
-alertClose.addEventListener("click", () => toggleConfirmAlert());
+alertConfirmClose.addEventListener("click", () => toggleConfirmAlert());
+alertErrorClose.addEventListener("click", () => toggleErrorAlert());
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const features = [
     ...document.querySelectorAll('input[type="checkbox"]:checked'),
-  ].map((feature) => feature.id);
+  ].map((feature) => +feature.id);
   validateInputs(features);
   const errors = document.querySelectorAll(".error");
   if (![...errors].length) {
     submitForm(features);
-    toggleConfirmAlert();
-    resetForm();
   }
 });
