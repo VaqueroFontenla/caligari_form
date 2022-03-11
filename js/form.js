@@ -142,12 +142,11 @@ const submitForm = async (features) => {
       body: JSON.stringify(data),
     });
     const inn = await response.json();
-    console.log(inn);
     if (inn) {
-      toggleConfirmError();
+      toggleConfirmAlert();
       resetForm();
     } else {
-      toggleConfirmAlert();
+      toggleErrorAlert();
     }
   } catch (error) {
     toggleErrorAlert();
