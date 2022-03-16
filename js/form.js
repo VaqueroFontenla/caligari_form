@@ -10,18 +10,12 @@ const alertConfirm = document.getElementById("alert-confirm");
 const alertError = document.getElementById("alert-error");
 const alertConfirmClose = document.getElementById("alert-confirm-close");
 const alertErrorClose = document.getElementById("alert-error-close");
+const confirmationModal = document.getElementById("confirmation-modal");
+const closeConfirmationModal = document.getElementById("close-modal");
 
-const toggleConfirmAlert = () => {
-  alertConfirm.classList.toggle("alert");
-  alertConfirm.classList.toggle("confirm");
-};
-
-const toggleErrorAlert = () => {
-  alertError.classList.toggle("alert");
-  alertError.classList.toggle("error");
-};
-
-const toggleAlert = () => {};
+const toggleErrorAlert = () => alertError.classList.toggle("alert");
+const openModalConfirmation = () => (confirmationModal.style.display = "block");
+const closeModalConfirmation = () => (confirmationModal.style.display = "none");
 const resetInput = (input) => {
   if (input.value) {
     const small = input.parentElement.querySelector("small");
@@ -31,7 +25,6 @@ const resetInput = (input) => {
     }
   }
 };
-
 const resetRating = () => {
   if (rating.value) {
     const small = startsWrapper.nextElementSibling;
@@ -41,7 +34,6 @@ const resetRating = () => {
     }
   }
 };
-
 const resetFeatures = () => {
   const features = [
     ...document.querySelectorAll('input[type="checkbox"]:checked'),
@@ -54,7 +46,6 @@ const resetFeatures = () => {
     }
   }
 };
-
 const resetForm = () => {
   const successElements = document.querySelectorAll(".success");
   const alerts = document.querySelectorAll("small");
@@ -64,14 +55,12 @@ const resetForm = () => {
   [...alerts].forEach((alert) => (alert.innerText = ""));
   form.reset();
 };
-
 const setErrorInput = (input, message) => {
   const formControl = input.parentElement;
   const small = formControl.querySelector("small");
   formControl.className = "form-control error";
   small.innerText = message;
 };
-
 const setSuccessInput = (input) => {
   const formControl = input.parentElement;
   const small = formControl.querySelector("small");
@@ -80,13 +69,11 @@ const setSuccessInput = (input) => {
     small.innerText = "";
   }
 };
-
 const setErrorElement = (element, className, message) => {
   element.className = className;
   const small = element.nextElementSibling;
   small.innerText = message;
 };
-
 const setSuccessElement = (element, className) => {
   element.className = className;
   const small = element.nextElementSibling;
@@ -94,7 +81,6 @@ const setSuccessElement = (element, className) => {
     small.innerText = "";
   }
 };
-
 const validateInputs = (features) => {
   const nameValue = inn.value.trim();
   const cityValue = city.value.trim();
@@ -126,7 +112,6 @@ const validateInputs = (features) => {
         "Necesitamos al menos una etiqueta"
       );
 };
-
 const submitForm = async (features) => {
   const data = {
     name: inn.value,
@@ -143,7 +128,7 @@ const submitForm = async (features) => {
     });
     const inn = await response.json();
     if (inn) {
-      toggleConfirmAlert();
+      openModalConfirmation();
       resetForm();
     } else {
       toggleErrorAlert();
@@ -157,8 +142,11 @@ inn.addEventListener("change", () => resetInput(inn));
 city.addEventListener("change", () => resetInput(city));
 startsWrapper.addEventListener("click", () => resetRating());
 featuresWrapper.addEventListener("click", () => resetFeatures());
-alertConfirmClose.addEventListener("click", () => toggleConfirmAlert());
 alertErrorClose.addEventListener("click", () => toggleErrorAlert());
+closeConfirmationModal.addEventListener("click", () =>
+  closeModalConfirmation()
+);
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const features = [

@@ -255,7 +255,8 @@ input[type="checkbox"]:checked + .tag {
   visibility: visible;
 }
 
-.form input[type="submit"] {
+.form input[type="submit"],
+button {
   align-self: center;
   justify-self: end;
 
@@ -276,17 +277,10 @@ input[type="checkbox"]:checked + .tag {
   display: grid;
   grid-template-columns: 1fr auto;
 
+  background-color: var(--error-color-bg);
   border-radius: var(--border-radius);
   padding: var(--padding);
   position: relative;
-}
-
-.alert.confirm {
-  background-color: var(--color-highlight);
-}
-
-.alert.error {
-  background-color: var(--error-color-bg);
 }
 
 i.fa-solid.fa-xmark {
@@ -301,4 +295,38 @@ i.fa-solid.fa-xmark {
   main {
     padding: var(--padding) 0;
   }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--theme-body-bg);
+  padding-top: 50px;
+}
+
+.modal-content {
+  display: grid;
+  row-gap: 2rem;
+
+  text-align: center;
+  max-width: 312px;
+  padding: var(--padding);
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--form-bg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.modal span {
+  font-size: 2rem;
+}
+
+.modal-content button {
+  justify-self: center;
 }

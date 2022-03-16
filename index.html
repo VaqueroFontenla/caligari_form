@@ -59,10 +59,6 @@
               <ul class="tags__wrapper"></ul>
               <small></small>
           </fielddset>
-          <div id='alert-confirm' class='hidden'>
-            <span>¡Muchas gracias por tu aporte!</span>
-            <i class="fa-solid fa-xmark" id='alert-confirm-close'></i>          
-          </div>
           <div id='alert-error' class='hidden'>
             <span>¡Oooops! Algo ha salido mal</span>
             <i class="fa-solid fa-xmark" id='alert-error-close'></i>          
@@ -70,6 +66,13 @@
           <input type="submit" class="submit" type="submit" value='Enviar Caligari'/>
         </form>
       </div>
+      <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <span>¡Muchas gracias por tu aporte!</span>
+            <button type="button" id="close-modal">Aceptar</button>
+        </form>
+      </div>
+      
     </main>
     <script type="module" src="js/create-rating.js"></script>
     <script type="module" src="js/get-features.js"></script>      
