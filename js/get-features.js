@@ -1,9 +1,8 @@
-const URL = "https://caligari-api.herokuapp.com/api/v1/features";
+import { apiClient } from './firebase.js'
 const featuresWrapper = document.querySelector(".tags__wrapper");
 
 export const getFeatures = async () => {
-  const response = await fetch(URL);
-  const features = await response.json();
+  const features = await apiClient.get('features')
   const tpl = features
     .map(
       (feature) => `
